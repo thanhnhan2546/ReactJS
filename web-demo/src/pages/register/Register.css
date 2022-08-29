@@ -1,0 +1,100 @@
+.registerContent {
+    background-color: #fffcfc;
+  }
+  @media screen and (max-width: 992px) {
+    .registerContent .container {
+      padding: 0 65px;
+    }
+  }
+  .registerContent .container .titleRegister {
+    text-align: center;
+    margin-bottom: 62px;
+  }
+  .registerContent .container .titleRegister h1 {
+    font-size: 40px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 48px;
+  }
+  .registerContent .container .alert {
+    display: none;
+  }
+  .registerContent .container .mainRegister .row .column .errorSpan {
+    margin-bottom: 10px;
+  }
+  .registerContent .container .mainRegister .row .column span {
+    font-size: 20px;
+    font-weight: 400;
+    color: #f50e0e;
+    line-height: 24px;
+    display: block;
+  }
+  .registerContent .container .mainRegister .row .column .form-group {
+    display: flex;
+    width: 90%;
+    margin-bottom: 27px;
+    border-bottom: 5px solid #35a22c;
+  }
+  @media screen and (max-width: 992px) {
+    .registerContent .container .mainRegister .row .column .form-group {
+      width: 100%;
+    }
+  }
+  .registerContent .container .mainRegister .row .column .form-group input {
+    border: none;
+    padding: 0;
+    border-radius: 0%;
+  }
+  .registerContent .container .mainRegister .row .column .form-group input::placeholder {
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 36px;
+  }
+  @media screen and (max-width: 768px) {
+    .registerContent .container .mainRegister .row .column .form-group input::placeholder {
+      font-size: 24px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 36px;
+    }
+  }
+  .registerContent .container .mainRegister .row .column .gender {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 36px;
+  }
+  @media screen and (max-width: 768px) {
+    .registerContent .container .mainRegister .row .column .gender {
+      font-size: 24px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 36px;
+    }
+  }
+  .registerContent .container .mainRegister .row .column .gender .radioGender {
+    accent-color: #35a22c;
+    height: 50px;
+    width: 65.42px;
+    margin-left: 40px;
+  }
+  .registerContent .container .mainRegister .row .column .btn-submit {
+    margin: 58px 0;
+    width: 291px;
+    height: 50px;
+    background-color: #35a22c;
+    border: none;
+    font-size: 30px;
+    font-weight: 400;
+    color: #fffcfc;
+    line-height: 36px;
+  }
+  .registerContent .container .mainRegister .row .column .btn-submit:hover {
+    background-color: #bf18e5;
+  }
+  

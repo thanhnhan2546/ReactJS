@@ -1,0 +1,12 @@
+assets: Chứa hình ảnh, css của project
+components: Chứa component của ứng dụng
+HOC: 
+page: components mức độ trang, 
+redux: 
+- actions
+- reducers
+- configStore.js <=> rootReducer: 
+- constants
+services: Chứa những dịch vụ liên kết tới BE
+templates: chứa các components có mức độ lớn hơn page, (theme)
+util: thư mục dùng chung của hệ thống

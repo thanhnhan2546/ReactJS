@@ -1,0 +1,9 @@
+Routing: 
+- Là cơ chế trong single page giúp ta chuyển đổi qua lại giữa các component
+- Để sử dụng được routing với reactJS, ta cần packgae hỗ trợ đó là React-router-dom
+
+Sử dụng: Tại app.js, ta đang có 2 component không thể hiện cùng lúc. Do đó ta sẽ dùng routing để quản lý, dựa theo đường dẫn url để hiển thị component tương ứng 
+
+NavLink (hoặc <Link>)
+- Thư viện react router dom hỗ trợ ta thẻ NavLink thay thế cho thẻ <a> với href đổi thành to, giúp cho ta có thể chuyển đổi qua lại giữa các trang mà không cần load lại toàn bổ html của trang đó.
+- Ngoài ra <NavLink> còn cho phép ta custom link css, khi người dùng gõ đúng dường dẫn thì thẻ NavLink sẽ được active class hoặc style thong qua thuộc tính tương ứng activeClass, activeStyle

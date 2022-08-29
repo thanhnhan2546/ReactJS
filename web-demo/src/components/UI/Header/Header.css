@@ -1,0 +1,35 @@
+header{
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-brand i{
+    color: green;
+}
+.navbar-brand span{
+    font-size: 2rem;
+}
+.menu li{
+    margin: 0 10px;
+}
+
+.navbar-dark .menu .nav-link:hover {
+    color: green;
+}
+.menu li::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: green;
+    display: block;
+    transition: all 0.5s;
+}
+.menu li:hover::after{
+    width: 100%;
+    color: green;
+}
+.menu li.active::after{
+    width: 100%;
+}

@@ -1,0 +1,52 @@
+{
+    "Phone":[
+        {
+            "maSP": 123,
+            "tenSP": "Iphone13 Pro Max",
+            "hinhAnh":"https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
+            "giaBan":  140000,
+            "soLuong": 4,
+            "moTa": "Iphone 13 pro max ok"
+        },
+        {
+            "maSP": 456,
+            "tenSP": "Iphone13 ",
+            "hinhAnh":"https://cdn.hoanghamobile.com/i/preview/Uploads/2021/09/15/image-removebg-preview-12.png",
+            "giaBan":  120000,
+            "soLuong": 5,
+            "moTa": "Iphone 13  ok"
+        },
+        {
+            "maSP": 789,
+            "tenSP": "Iphone12 Pro Max",
+            "hinhAnh":"https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xam-new-600x600-200x200.jpg",
+            "giaBan":  100000,
+            "soLuong": 7,
+            "moTa": "Iphone 13 pro max ok"
+        },
+        {
+            "maSP": 444,
+            "tenSP": "Iphone XS Max",
+            "hinhAnh":"https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
+            "giaBan":  70000,
+            "soLuong": 3,
+            "moTa": "Iphone XS pro max ok"
+        },
+        {
+            "maSP": 532,
+            "tenSP": "Iphone 11 Pro Max",
+            "hinhAnh":"https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
+            "giaBan":  90000,
+            "soLuong": 1,
+            "moTa": "Iphone 11 pro max ok"
+        },
+        {
+            "maSP": 767,
+            "tenSP": "Iphone 11 Pro ",
+            "hinhAnh":"https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
+            "giaBan":  950000,
+            "soLuong": 9,
+            "moTa": "Iphone 11 pro ok"
+        }
+    ]
+}

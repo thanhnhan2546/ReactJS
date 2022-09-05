@@ -18,9 +18,17 @@ export default class Login extends Component {
     let newValues = { ...this.state.values, [name]: value };
     let newErrors = { ...this.state.errors };
 
-    value.trim() === ""
-      ? (newErrors[name] = name + " is required !")
-      : (newErrors[name] = "");
+    const regexEmail =
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+    if (value.trim() === "") newErrors[name] = name + " is required !";
+    else {
+      if (name === "email") {
+        regexEmail.test(value)
+          ? (newErrors[name] = "")
+          : (newErrors[name] = name + " is invalid !");
+      }
+    }
 
     this.setState({
       values: newValues,
@@ -49,7 +57,7 @@ export default class Login extends Component {
     }
 
     if (!valid) {
-      alert("Login is invalid");
+      alert("Login is invalid !");
       console.log(this.state.values);
       //   return;
     } else {

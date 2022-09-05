@@ -12,10 +12,12 @@ import {
   IconButton,
 } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useRef, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import { CartReducers } from "../../redux/reducers/CartReducers";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const Title = styled(Typography)({
   color: "#343a40",
@@ -169,13 +171,22 @@ export default function () {
     }
   }, []);
   const renderTotal = () => {
-    return cart.cartList.reduce((res, item) => {
-      return (res += Number(item.price) * Number(item.qtyCart));
-    }, 0);
+    return cart.cartList
+      .reduce((res, item) => {
+        return (res += Number(item.price) * Number(item.qtyCart));
+      }, 0)
+      .toFixed(2);
   };
 
   const deleteCart = (id) => {
     dispatch(CartReducers.actions.deleteCart(id));
+  };
+  const changeQty = (id, bool) => {
+    const infor = {
+      id,
+      bool,
+    };
+    dispatch(CartReducers.actions.changeQtyCart(infor));
   };
   const renderBodyTable = () => {
     return cart.cartList.map((item, index) => {
@@ -196,10 +207,33 @@ export default function () {
             <img src={item.img} width="40%" height="30%" alt="" />
           </Body>
           <Body>{item.name}</Body>
-          <Body align="right">{item.qtyCart}</Body>
+          <Body align="center">
+            <Button
+              onClick={() => {
+                changeQty(item.id, false);
+              }}
+            >
+              <ArrowLeftIcon />
+            </Button>
+            <input
+              style={{ width: "40px", textAlign: "center" }}
+              type="text"
+              value={item.qtyCart}
+              onChange={(e) => {
+                console.log(e.target.value);
+              }}
+            />
+            <Button
+              onClick={() => {
+                changeQty(item.id, true);
+              }}
+            >
+              <ArrowRightIcon />
+            </Button>
+          </Body>
           <Body align="right">{item.price} $</Body>
           <Body align="right">
-            {Number(item.qtyCart) * Number(item.price)} $
+            {(Number(item.qtyCart) * Number(item.price)).toFixed(2)} $
           </Body>
         </TableRow>
       );
@@ -208,41 +242,52 @@ export default function () {
   return (
     <Container style={{ textAlign: "right" }}>
       <Title>Cart</Title>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead className="bg-success ">
-            <TableRow className="text-light">
-              <Head></Head>
-              <Head color="#fffff">Image</Head>
-              <Head>Name</Head>
-              <Head align="right">Quantity</Head>
-              <Head align="right">Price</Head>
-              <Head align="right">Subtotal</Head>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {boolean ? (
-              renderBodyTable()
-            ) : (
-              <TableRow>
-                <Body rowSpan={3} style={{ textAlign: "center" }}>
-                  No Item
-                </Body>
+      <div style={{ overflow: "auto" }}>
+        <TableContainer
+          component={Paper}
+          style={{ borderCollapse: "collapse", width: "100%" }}
+        >
+          <Table>
+            <TableHead className="bg-success ">
+              <TableRow className="text-light">
+                <Head></Head>
+                <Head color="#fffff">Image</Head>
+                <Head>Name</Head>
+                <Head align="center">Quantity</Head>
+                <Head align="right">Price</Head>
+                <Head align="right">Subtotal</Head>
               </TableRow>
-            )}
+            </TableHead>
+            <TableBody
+            // style={{
+            //   overflowY: "scroll",
+            //   height: "100px",
+            //   display: "block",
+            // }}
+            >
+              {boolean ? (
+                renderBodyTable()
+              ) : (
+                <TableRow>
+                  <Body rowSpan={3} style={{ textAlign: "center" }}>
+                    No Item
+                  </Body>
+                </TableRow>
+              )}
 
-            <TableRow>
-              <Body rowSpan={2} colSpan={4} />
-              <Total align="right">Item</Total>
-              <Body align="right">{cart.total}</Body>
-            </TableRow>
-            <TableRow>
-              <Total align="right">Total</Total>
-              <Body align="right">{boolean ? renderTotal() : ""} $</Body>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+              <TableRow>
+                <Body rowSpan={2} colSpan={4} />
+                <Total align="right">Item</Total>
+                <Body align="right">{cart.total}</Body>
+              </TableRow>
+              <TableRow>
+                <Total align="right">Total</Total>
+                <Body align="right">{boolean ? renderTotal() : ""} $</Body>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
       <Button
         style={{ marginTop: "15px" }}
         size="large"

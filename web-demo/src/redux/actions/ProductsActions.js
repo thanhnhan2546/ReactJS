@@ -18,7 +18,7 @@ export const getProductsAPI = () => {
         concepts: "H&M MAN",
       },
       headers: {
-        "X-RapidAPI-Key": "803c27b396msh8725bb83ccaac69p1bf111jsn1f2bd72d5085",
+        "X-RapidAPI-Key": "68e513472amsh48e987d8c1f1417p1b497ejsnf3f5adbfe802",
         "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
       },
     });
@@ -44,7 +44,7 @@ export const getDetailProduct = (props) => {
       url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/detail",
       params: { lang: "en", productcode: props.idProduct, country: "us" },
       headers: {
-        "X-RapidAPI-Key": "b4a4eb0cbfmsh2d7a9077a2df08dp1f45eajsna84090971686",
+        "X-RapidAPI-Key": "68e513472amsh48e987d8c1f1417p1b497ejsnf3f5adbfe802",
         "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
       },
     });

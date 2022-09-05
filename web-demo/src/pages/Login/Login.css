@@ -100,4 +100,10 @@
   .registerContent .container .mainRegister .row .column .btn-submit:hover {
     background-color: #bf18e5;
   }
+  .registerContent .container .mainRegister .row .column .form-group {
+    margin: 5px 0;
+  }
+  .registerContent .container .mainRegister .row .column .text {
+    margin-bottom: 30px;
+  }
   

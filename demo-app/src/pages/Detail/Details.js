@@ -11,6 +11,7 @@ export default function Details() {
     img: "",
     idProduct: "",
   });
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ export default function Details() {
 
   useEffect(() => {
     getDetail();
-  }, []);
+  }, [infor]);
 
   const renderDetail = () => {
     return (
@@ -83,7 +84,7 @@ export default function Details() {
   return (
     <div>
       {renderDetail()}
-      {/* <ProductLists /> */}
+      <ProductLists />
     </div>
   );
 }

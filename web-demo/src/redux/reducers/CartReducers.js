@@ -64,11 +64,41 @@ export const CartReducers = createSlice({
       const index = state.cart.cartList.findIndex(
         (item) => item.id === action.payload
       );
+      const qty = current(state.cart.cartList[index]).qtyCart;
+      state.cart.total -= qty;
       state.cart.cartList.splice(index, 1);
       state.cart.cartList.length === 0
         ? localStorage.removeItem("cart")
         : localStorage.setItem("cart", JSON.stringify(state.cart));
       alert("Item has been deleted !!");
+    },
+    changeQtyCart: (state, action) => {
+      if (action.payload.bool) {
+        state.cart.cartList.map((item) =>
+          item.id === action.payload.id ? (item.qtyCart += 1) : item
+        );
+        state.cart.total += 1;
+      }
+      if (!action.payload.bool) {
+        state.cart.cartList.map(
+          (item) => {
+            if (item.id === action.payload.id) {
+              if (item.qtyCart > 1) {
+                item.qtyCart -= 1;
+                state.cart.total -= 1;
+              }
+            }
+            return item;
+          }
+          // item.id === action.payload.id
+          //   ? item.qtyCart > 1
+          //     ? (item.qtyCart -= 1)
+          //     : item
+          //   : item
+        );
+        // state.cart.total -= 1;
+      }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
   },
 });

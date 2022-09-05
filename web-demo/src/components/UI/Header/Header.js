@@ -14,9 +14,10 @@ export default class Header extends Component {
   constructor(props) {
     super(props);
   }
-  totalCart = 0;
+
   state = {
     bgColor: "#343a4000!important",
+    totalCart: 0,
   };
   listenScrollEvent = (e) => {
     if (window.scrollY > 200) {
@@ -27,17 +28,22 @@ export default class Header extends Component {
     }
   };
 
+  renderQtyCart() {
+    if (localStorage.getItem("cart")) {
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      this.state.totalCart = cart.total;
+    } else {
+      this.state.totalCart = 0;
+    }
+  }
+
   componentDidMount() {
     window.addEventListener("scroll", this.listenScrollEvent);
     this.logout();
+    this.renderQtyCart();
   }
-  componentDidUpdate() {
-    if (localStorage.getItem("cart")) {
-      const cart = JSON.parse(localStorage.getItem("cart"));
-      this.totalCart = cart.total;
-    } else {
-      this.totalCart = 0;
-    }
+  componentDidUpdate(prevValue, currentValue) {
+    this.renderQtyCart();
   }
 
   logout = () => {
@@ -45,11 +51,8 @@ export default class Header extends Component {
   };
   render() {
     return (
-      <header className="container">
-        <nav
-          style={{ backgroundColor: this.state.bgColor }}
-          className="navbar navbar-expand-md  navbar-dark"
-        >
+      <header style={{ backgroundColor: this.state.bgColor }}>
+        <nav className=" container navbar navbar-expand-md  navbar-dark">
           {/* Brand */}
           <NavLink className="navbar-brand" to="/">
             {/* fa-2x: size 2x trong bootstrap */}
@@ -114,7 +117,7 @@ export default class Header extends Component {
                     <NavLink className="nav-link" to="/cart">
                       <IconButton aria-label="cart">
                         <StyledBadge
-                          badgeContent={this.totalCart}
+                          badgeContent={this.state.totalCart}
                           color="secondary"
                         >
                           <ShoppingCartIcon />

@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 // import { getDetailProduct } from "../../redux/actions/ProductsActions";
 import "./Detail.css";
 import ProductLists from "../../components/ProductLists";
-import Header from "../../components/UI/Header/Header";
 import { getDetailProduct } from "../../redux/reducers/ProductsReducers";
-import CircularProgress from "@mui/material/CircularProgress";
+
 import { CartReducers } from "../../redux/reducers/CartReducers";
+import SquareIcon from "@mui/icons-material/Square";
+import { Rating } from "@mui/material";
+import LoadingDetails from "./LoadingDetails";
+import Swper from "../../components/swipper/Swper";
 
 export default function Details() {
   const [idproductm] = useState({
@@ -15,31 +18,20 @@ export default function Details() {
     idProduct: "",
   });
   const { id } = useParams();
-  console.log(id);
-  const dispatch = useDispatch();
-  // console.log(id);
 
-  // const { ProductDetail, ProductList } = useSelector(
-  //   (state) => state.ProductsReducer
-  // );
+  const dispatch = useDispatch();
+
   const ProductDetail = useSelector((state) => state.products.productDetail);
   const { statusDetails } = useSelector((state) => state.products);
-  console.log(statusDetails);
+
   const ProductList = useSelector((state) => state.products.product.list);
   const idDetails = ProductList.find((item) => item.defaultArticle.code === id);
-  const img = idDetails.images[0].url;
-  // console.log(idDetails);
-  // setInfor( {
-  //   img: idDetails.images[0].url,
-  //   idProduct: id,
-  // });
-  // console.log("infor", infor);
+  const [img, setImg] = useState(idDetails.images[0].url);
 
   const getDetail = () => {
     dispatch(getDetailProduct(id));
     // console.log("getDetail");
   };
-  console.log("ProductDetali ", ProductDetail);
 
   const addpdCart = (pd) => {
     const pdCart = {
@@ -52,8 +44,18 @@ export default function Details() {
   };
   useEffect(() => {
     getDetail();
-  }, []);
+    window.scrollTo(0, 500);
+  }, [id]);
 
+  const handleMouseEnter = (e) => {
+    e.target.style.cursor = "pointer";
+    e.target.style.opacity = 1;
+    setImg(e.target.src);
+  };
+  const handleMouseLeave = (e) => {
+    e.target.style.opacity = 0.2;
+    setImg(idDetails.images[0].url);
+  };
   const renderDetail = () => {
     return (
       <section className="aboutUs section-inner container">
@@ -65,6 +67,10 @@ export default function Details() {
               data-wow-delay="0.2s"
             >
               <img src={img} alt />
+              <Swper
+                handleMouseLeave={handleMouseLeave}
+                handleMouseEnter={handleMouseEnter}
+              />
             </div>
             <div
               className="aboutUs__right wow animate__animated animate__fadeInRight"
@@ -73,19 +79,29 @@ export default function Details() {
             >
               <div className="title">
                 <h2>{ProductDetail.name}</h2>
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={4.5}
+                  precision={0.5}
+                  readOnly
+                />
                 <p>{ProductDetail.whitePrice.price} $</p>
               </div>
               <p>Type: {ProductDetail.presentationTypes}</p>
               <p>
-                Color:{" "}
-                <span style={{ color: ProductDetail.color.rgbColor }}>
-                  {ProductDetail.color.text}
-                </span>
+                Color: <span>{ProductDetail.color.text}</span>&ensp;
+                <SquareIcon
+                  style={{
+                    color: ProductDetail.color.rgbColor,
+                    border: "1px solid #00000f",
+                  }}
+                />
               </p>
               <ul>
                 <li>
-                  Import By:
-                  {ProductDetail.importedBy}
+                  Description:
+                  <br />
+                  {ProductDetail.description}
                 </li>
               </ul>
               <button
@@ -105,15 +121,9 @@ export default function Details() {
   return (
     <>
       <div>
-        {statusDetails === "loading" ? (
-          <div style={{ textAlign: "center", margin: "15px" }}>
-            <CircularProgress color="success" />
-          </div>
-        ) : (
-          renderDetail()
-        )}
+        {statusDetails === "loading" ? <LoadingDetails /> : renderDetail()}
       </div>
-      {/* <ProductLists /> */}
+      <ProductLists id={id} />
     </>
   );
 }

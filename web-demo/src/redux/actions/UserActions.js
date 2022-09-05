@@ -24,8 +24,6 @@ export const Signin = (values) => {
     data: values,
   });
   promise.then((res) => {
-    alert("Login success ");
-
     localStorage.setItem("user", values.email);
   });
   promise.catch((err) => {

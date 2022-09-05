@@ -24,7 +24,7 @@ export default function ProductLists() {
   const getProducts = () => {
     dispatch(getProductsAPI());
   };
-  console.log("CartList", CartList);
+
   useEffect(() => {
     getProducts();
   }, []);

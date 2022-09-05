@@ -27,17 +27,42 @@ export default class Register extends Component {
 
     let newValues = { ...this.state.values, [name]: value };
     let newErrors = { ...this.state.errors };
+    const regexEmail =
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    const regexName = /^[a-zA-Z ]+$/;
+    const regexPass =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const regexPhone = /^[0-9]+$/;
 
-    value.trim() === ""
-      ? (newErrors[name] = name + " is required !")
-      : (newErrors[name] = "");
+    if (value.trim() === "") newErrors[name] = name + " is required !";
+    else {
+      if (name === "email") {
+        regexEmail.test(value)
+          ? (newErrors[name] = "")
+          : (newErrors[name] = name + " is invalid !");
+      }
+      if (name === "name") {
+        regexName.test(value)
+          ? (newErrors[name] = "")
+          : (newErrors[name] = name + "is invalid !");
+      }
+      if (name == "passWord") {
+        regexPass.test(value)
+          ? (newErrors[name] = "")
+          : (newErrors[name] = name + " is invalid !");
+      }
+      if (name == "pwConfirm") {
+        value === newValues.passWord
+          ? (newErrors[name] = "")
+          : (newErrors[name] = name + " is not confirm !");
+      }
+      if (name == "phone") {
+        regexPhone.test(value)
+          ? (newErrors[name] = "")
+          : (newErrors[name] = name + " is invalid !");
+      }
+    }
 
-    // if (name === "pwConfirm") {
-    //   value === newValues.passWord
-    //     ? newErrors[name] == ""
-    //     : (newErrors[name] = "Password is inconfirm !");
-
-    // }
     this.setState({
       values: newValues,
       errors: newErrors,
@@ -119,7 +144,7 @@ export default class Register extends Component {
                   />
                   <span>(*)</span>
                 </div>
-                <span className="errorSpan" id="errPassword">
+                <span className="text text-danger">
                   {this.state.errors.passWord}
                 </span>
                 <div className="form-group">
@@ -132,7 +157,7 @@ export default class Register extends Component {
                   />
                   <span>(*)</span>
                 </div>
-                <span className="errorSpan" name="errPwConfirm">
+                <span className="text text-danger">
                   {this.state.errors.pwConfirm}
                 </span>
               </div>
@@ -147,7 +172,7 @@ export default class Register extends Component {
                   />
                   <span>(*)</span>
                 </div>
-                <span className="errorSpan" name="errName">
+                <span className="text text-danger">
                   {this.state.errors.name}
                 </span>
                 <div className="form-group">
@@ -160,7 +185,7 @@ export default class Register extends Component {
                   />
                   <span>(*)</span>
                 </div>
-                <span className="errorSpan" name="errPhone">
+                <span className="text text-danger">
                   {this.state.errors.phone}
                 </span>
                 <div className="form-group gender">

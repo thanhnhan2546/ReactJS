@@ -84,19 +84,20 @@
   .aboutUs__content {
     display: flex;
     justify-content: flex-end;
-   
+   border-bottom: 3px solid rgb(17, 74, 232);
     position: relative;
+    height: 600px;
   }
   .aboutUs__left {
     width: 40%;
-    
+    text-align: center;
     margin-right: 20px;
   }
   .aboutUs__right {
     width: 60%;
   }
   .aboutUs__left img {
-    width: 100%;
+    width: 90%;
     height: 70%;
     border-radius: 10px;
   }
